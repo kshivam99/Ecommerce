@@ -1,0 +1,26 @@
+.cartItems {
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    flex-direction: column;
+    padding: 0 3rem;
+}
+.cartItem {
+    display: flex;
+    height: 5rem;
+    padding:0.5rem;
+}
+
+.cartItem img {
+    height: 90%;
+    width: auto;
+}
+
+.cartItemDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 90%;
+}

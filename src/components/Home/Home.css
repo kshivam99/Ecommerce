@@ -1,0 +1,12 @@
+.product-grid {
+    display:grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    align-items: center;
+    justify-items: center;
+    box-sizing: border-box;
+  }
+
+  .products {
+      width: 100%;
+  }

@@ -1,0 +1,19 @@
+.product-card {
+    margin:2rem;
+    min-width: 15rem;
+    min-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.product-card>img {
+    width:15rem;
+}
+
+.product-card .card-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
