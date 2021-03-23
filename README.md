@@ -1,18 +1,8 @@
-# exercise box
+# Ecommerce site made in react Js
 
 ## About the setup
 
-- This codesandbox has mock API server running.
+- Fetching products using a mock server in mirage
 - Products are at "/api/products"
-- You can see the fields coming by console logging the output from axios call
+- You can get the fields coming by console logging the output from axios call
 
-## Challenge
-
-- Load products on page load
-
-  - Make sure you show loader while the app is loading
-  - Handle error as well
-
-- Use the card which we made in CSS class to showcase the product with thumbnail image
-
-- Make sure you use async/await
