@@ -1,0 +1,11 @@
+.wishlist-item {
+    margin: 2rem 0;
+    width:70%;
+    display: flex;
+    align-items: center;
+}
+
+.wishlist-item>img {
+    width: 15rem;
+
+}

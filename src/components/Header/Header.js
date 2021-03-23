@@ -20,6 +20,16 @@ function Header() {
     const [id, setId] = useState(0);
     const length = slider.length;
 
+    useEffect(() => {
+        console.log("hi");
+        const timer = setInterval(() => {
+         setId(prev=> prev===length-1? 0: prev+1);
+        }, 4000);
+        return () => {
+          clearInterval(timer);
+        };
+      }, []);
+
 
     function left() {
         console.log("left clicked")
@@ -30,26 +40,27 @@ function Header() {
         setId(prev=> prev===length-1? 0: prev+1);
     };
 
-    function leftarrow(e) {
-        if(e.key ==='ArrowLeft')
-        {
-            setId(prev=> prev===0 ? length-1: prev-1);
-        }
-    }
+    // function leftarrow(e) {
+    //     if(e.key ==='ArrowLeft')
+    //     {
+    //         setId(prev=> prev===0 ? length-1: prev-1);
+    //     }
+    // }
 
-    function rightarrow(e) {
-        if(e.key ==='ArrowRight')
-        {
-            setId(prev=> prev===length-1? 0: prev+1);
-        }
-    }
+    // function rightarrow(e) {
+    //     if(e.key ==='ArrowRight')
+    //     {
+    //         setId(prev=> prev===length-1? 0: prev+1);
+    //     }
+    // }
+
     return (
         <div className="header-body">
             {slider.map((item)=>
-                <div className={item.id===id?"slide fade":"hide fade"} key={item.id}>
+                <div className={item.id===id?"slide":"hide"} key={item.id}>
                     { item.id===id && <img src={item.image} alt="" />}
-                    <a className="prev" onKeyPress={leftarrow}  onClick={left}>&#10094;</a>
-                    <a className="next" onKeyPress={rightarrow} onClick={right}>&#10095;</a>
+                    <a className="prev" onClick={left} tabIndex="0">&#10094;</a>
+                    <a className="next" onClick={right} tabIndex="0">&#10095;</a>
                 </div>
              )}
                         

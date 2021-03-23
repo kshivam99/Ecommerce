@@ -10,3 +10,17 @@
   .products {
       width: 100%;
   }
+
+  .sort {
+      border: 1px solid black;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  fieldset {
+      margin:1rem;
+  }
+  fieldset label {
+      margin:0.5rem;
+  }

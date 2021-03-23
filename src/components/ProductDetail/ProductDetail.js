@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { useCart } from "../../contexts/cartContext"
 import { useWishList } from "../../contexts/wishListContext"
 import {
@@ -7,25 +7,21 @@ import {
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import { BiCart } from "react-icons/bi"
 import { useProduct } from "../../contexts/productContext"
+import "./ProductDetail.css"
+
 
 
 
 function ProductDetail() {
-    const { currentProduct:{id, name, image, price} } = useProduct();
+    const { currentProduct:{id, name, image, price, inStock, fastDelivery } } = useProduct();
     const { cart, setCart } = useCart();
     const { wishList, setWishList } = useWishList();
-    // const id = currentProduct.id;
-    // const name = currentProduct.name;
-    // const image = currentProduct.image;
-    // const price = currentProduct.price;
 
-    // const {id, name, image, price} = currentProduct;
     function isWish() {
         let wish = false;
         wishList.map(item=>(
             item.id===id?wish=true:null
         ))
-
         return wish;
     }
 
@@ -57,10 +53,13 @@ function ProductDetail() {
     }
 
     return (
-        <div>
+        <div className="product--detail">
             <img src={image} />
             <h1>{name}</h1>
             <p>₹{price}</p>
+            <p>Instock {inStock?"Available":"out of stock"}</p>
+            <p>fast Delivery {fastDelivery?"Available":"Nope"}</p>
+
             <div className="card-btn">
                 <div className="addToCartBtn">
                     <Link className="link" to="/cart">

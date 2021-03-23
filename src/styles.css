@@ -7,14 +7,16 @@
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
-  font-family: Georgia, serif;
+  font-family: "Poppins", sans-serif;
   user-select: none;
   overflow-x: hidden;
 }
 
-/* ::-webkit-scrollbar { 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+::-webkit-scrollbar { 
   display: none; 
-  } */
+  }
 
 
 .App {

@@ -22,31 +22,80 @@
 
 .slide {
     box-sizing: border-box;
+    position: relative;
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+    transform: all 0.6s ease;
 }
+@keyframes fade-in {
+    from {right: -100%;}
+    to {right: 0%;}
+}
+
 .hide {
+    visibility: hidden;
     display: none;
 }
+
+/* @keyframes fade-out {
+    from {left: 0%;} 
+    to {left: -100%;}
+  } */
+
 
 .slide>img {
     width: 98%;
 }
-.fade {
+/* .fade {
     -webkit-animation-name: fade;
-    -webkit-animation-duration: .5s;
+    -webkit-animation-duration: 2.5s;
     animation-name: fade;
-    animation-duration: .5s;
+    animation-duration: 2.5s;
     position: relative;
   }
   
   @-webkit-keyframes fade {
-    from {opacity: .4} 
+    from {opacity: .8} 
     to {opacity: 1}
   }
   
   @keyframes fade {
-    from {opacity: .4} 
+    from {opacity: .8} 
     to {opacity: 1}
+  } */
+/* 
+  .fade {
+    animation-name: fade-out;
+    animation-duration: 3s;
+    position: relative;
   }
+  
+  @keyframes fade-in {
+      from {right: -100%;}
+      to {right: 0%;}
+  }
+  
+  @keyframes fade-out {
+    from {left: 0%;} 
+    to {left: -100%;}
+  }
+   */
+
+/* 
+  .fade {
+    animation-name: fade;
+    animation-duration: 3s;
+    position: relative;
+  }
+  
+  @keyframes fade {
+      25% { left:-25%;}
+      50% { left: -50%;}
+      75% { left: -75%;}
+      100% {left:-100%;}
+  }
+   */
+
 
   .prev, .next {
     cursor: pointer;

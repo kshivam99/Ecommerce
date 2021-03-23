@@ -15,7 +15,7 @@ export default function setupMockServer() {
 
     routes() {
       this.namespace = "api";
-      this.timing = 500;
+      this.timing = 0;
       this.resource("products");
     },
 
@@ -25,7 +25,9 @@ export default function setupMockServer() {
           id: faker.random.uuid(),
           name: faker.commerce.productName(),
           image: faker.random.image(),
-          price: faker.commerce.price()
+          price: faker.commerce.price(),
+          inStock: faker.random.boolean(),
+          fastDelivery: faker.random.boolean()
         });
       });
     }
