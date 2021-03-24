@@ -1,19 +1,23 @@
 import React from 'react';
 import "./Header.css";
 import { useState, useEffect } from "react";
+import img1 from "./1.jpg";
+import img2 from "./2.jpg";
+import img3 from "./4.jpg";
+
 
 const slider = [
     {
         id:0,
-        image:"https://www.adventuregears.com/pub/media/wysiwyg/smartwave/porto/homepage/01/slider/2.jpg"
+        image:img1
     },
     {
         id:1,
-        image:"https://www.adventuregears.com/pub/media/wysiwyg/smartwave/porto/homepage/01/slider/4.jpg"
+        image:img2
     },
     {
         id:2,
-        image:"https://www.adventuregears.com/pub/media/wysiwyg/smartwave/porto/homepage/01/slider/1.jpg"
+        image:img3
     }
 ]
 function Header() {

@@ -28,7 +28,9 @@ function Navbar() {
     }
     return (
         <div className="nav">
-            <h2>Trekkart</h2>
+            <Link className="link" to="/">
+                <h2>Trekkart</h2>
+            </Link>
             <ul className={!showDropDownNav?"menu":"menu active"}>
                 <Link className="link" to="/">
                     <li className="middle" onClick={handleMenuIconClick}>

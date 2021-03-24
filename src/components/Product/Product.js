@@ -22,6 +22,9 @@ function Product({ id, name, image, price, inStock, fastDelivery, rating }) {
             })
           }
           className="product-card"
+          style={{
+            opacity:inStock?"1":"0.3"
+          }}
         >
           <img src={image} />
           <h1>{name}</h1>
