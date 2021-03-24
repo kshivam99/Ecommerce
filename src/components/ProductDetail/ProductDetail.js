@@ -80,7 +80,7 @@ function ProductDetail() {
       <div className="card-btn">
         <div className="addToCartBtn">
           <Link className="link" to="/cart">
-            <BiCart size={32} onClick={addToCart} />
+            {inStock && <BiCart size={32} onClick={addToCart} />}
           </Link>
         </div>
         <div className="wish" onClick={handleWish}>
