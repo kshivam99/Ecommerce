@@ -39,21 +39,7 @@ function Header() {
     function right() {
         setId(prev=> prev===length-1? 0: prev+1);
     };
-
-    // function leftarrow(e) {
-    //     if(e.key ==='ArrowLeft')
-    //     {
-    //         setId(prev=> prev===0 ? length-1: prev-1);
-    //     }
-    // }
-
-    // function rightarrow(e) {
-    //     if(e.key ==='ArrowRight')
-    //     {
-    //         setId(prev=> prev===length-1? 0: prev+1);
-    //     }
-    // }
-
+    
     return (
         <div className="header-body">
             {slider.map((item)=>

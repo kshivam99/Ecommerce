@@ -1,4 +1,3 @@
-
 * {
   margin: 0px;
   padding: 0px;
@@ -14,10 +13,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-::-webkit-scrollbar { 
-  display: none; 
-  }
-
+::-webkit-scrollbar {
+  display: none;
+}
 
 .App {
   font-family: sans-serif;
@@ -38,7 +36,7 @@
 } */
 
 @media screen and (max-width: 760px) {
-/* 
+  /* 
   .App .product-grid {
     display:flex;
     flex-direction: column; 

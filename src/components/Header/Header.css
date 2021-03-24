@@ -44,7 +44,8 @@
 
 
 .slide>img {
-    width: 98%;
+    width: 99%;
+    border-radius: 1rem;
 }
 /* .fade {
     -webkit-animation-name: fade;
@@ -135,7 +136,7 @@
   }
 
   .active, .dot:hover {
-    background-color: #717171;
+    background-color: #D97706;
   }
 
   @media only screen and (max-width: 760px) {

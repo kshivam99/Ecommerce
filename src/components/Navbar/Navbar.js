@@ -7,10 +7,14 @@ import {
     Link
   } from "react-router-dom";
 import  { useCart }  from "../../contexts/cartContext";
+import { useWishList } from "../../contexts/wishListContext"
+
 
 function Navbar() {
     const [showDropDownNav, setShowDropDownNav] = useState(false);
     const { cart } = useCart();
+    const { wishList } = useWishList();
+
 
     function handleMenuIconClick(){
         setShowDropDownNav(prev=>!prev);
@@ -24,22 +28,24 @@ function Navbar() {
     }
     return (
         <div className="nav">
-            <h2>Prayatak</h2>
+            <h2>Trekkart</h2>
             <ul className={!showDropDownNav?"menu":"menu active"}>
                 <Link className="link" to="/">
-                    <li onClick={()=>handleMenuIconClick()}>
+                    <li className="middle" onClick={()=>handleMenuIconClick()}>
                         Home
                     </li>
                 </Link>
                 <Link className="link" to="/wishlist">
-                    <li onClick={()=>handleMenuIconClick()}>
-                        WishList
+                    <li className="middle" onClick={()=>handleMenuIconClick()}>
+                        WishList 
                     </li>
+                    { wishList.length?<span className="superscript">{wishList.length}</span>:null}
                 </Link>
                 <Link className="link" to="/cart">
-                    <li>
-                        <MdShoppingBasket onClick={()=>handleMenuIconClick()} /> { cart.length?<span className="superscript">{totalItems()}</span>:null}
+                    <li className="middle">
+                        <MdShoppingBasket onClick={()=>handleMenuIconClick()} /> 
                     </li>
+                    { cart.length?<span className="superscript">{totalItems()}</span>:null}
                 </Link>
                 
             </ul>   

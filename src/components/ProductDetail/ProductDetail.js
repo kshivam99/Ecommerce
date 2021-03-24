@@ -32,7 +32,7 @@ function ProductDetail() {
                 curr.id!==id));
         }
         else{
-            setWishList([...wishList, {id, name, image }]);
+            setWishList([...wishList, {id, name, image, price}]);
         }
     }
 

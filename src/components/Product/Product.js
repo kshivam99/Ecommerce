@@ -9,8 +9,7 @@ import {
 
 function Product({id, name, image, price, inStock, fastDelivery }) {
     const { setCurrentProduct } = useProduct();
-    console.log("instock", inStock)
-
+    
     return (
         <>
         <Link className="link" to="/product">

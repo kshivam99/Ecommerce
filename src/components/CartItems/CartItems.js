@@ -24,7 +24,7 @@ function CartItem({item, cart, setCart}) {
             <img src={item.image} alt=""/>
             <div className="cartItemDetails">
                 <h1>{item.name}</h1>
-                <h4>{item.price}</h4>
+                <h4>₹{item.price}</h4>
                 <button onClick={incItem}>+</button>
                 <p>{item.quantity}</p>
                 <button onClick={decItem}>-</button>
@@ -35,11 +35,19 @@ function CartItem({item, cart, setCart}) {
 
 export default function CartItems() {
     const { cart, setCart } = useCart();
+    function getTotal() {
+        let total=0;
+        cart.map(item=>
+            total+=parseInt(item.price)*parseInt(item.quantity)
+            )
+        return total;
+    }
     return (
         <div className="cartItems">
             {cart.map(item=>
                 <CartItem item={item} cart={cart} setCart={setCart} />
             )}
+            <h1>Total Cart value: ₹{getTotal()}</h1>
         </div>
     );
 }
