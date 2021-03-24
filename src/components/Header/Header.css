@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top:5rem;
 }
 
 .header-body>img {
@@ -146,6 +147,9 @@
     .dot {
         height: 0.6rem;
         width: 0.6rem;
+    }
+    .header-body {
+      margin-top: 1rem;
     }
 
   }

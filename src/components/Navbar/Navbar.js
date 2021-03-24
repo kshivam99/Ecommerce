@@ -31,25 +31,30 @@ function Navbar() {
             <h2>Trekkart</h2>
             <ul className={!showDropDownNav?"menu":"menu active"}>
                 <Link className="link" to="/">
-                    <li className="middle" onClick={()=>handleMenuIconClick()}>
+                    <li className="middle" onClick={handleMenuIconClick}>
                         Home
                     </li>
                 </Link>
+                <Link className="link" to="/products">
+                    <li className="middle" onClick={handleMenuIconClick}>
+                        Products
+                    </li>
+                </Link>
                 <Link className="link" to="/wishlist">
-                    <li className="middle" onClick={()=>handleMenuIconClick()}>
+                    <li className="middle" onClick={handleMenuIconClick}>
                         WishList 
                     </li>
                     { wishList.length?<span className="superscript">{wishList.length}</span>:null}
                 </Link>
                 <Link className="link" to="/cart">
                     <li className="middle">
-                        <MdShoppingBasket onClick={()=>handleMenuIconClick()} /> 
+                        <MdShoppingBasket size={28} onClick={handleMenuIconClick} /> 
                     </li>
-                    { cart.length?<span className="superscript">{totalItems()}</span>:null}
+                    { cart.length?<span style={{bottom:"1rem"}} className="superscript">{totalItems()}</span>:null}
                 </Link>
                 
             </ul>   
-            <div className="menu-icon" onClick={()=>handleMenuIconClick()}>     
+            <div className="menu-icon" onClick={handleMenuIconClick}>     
                 {!showDropDownNav?<FaBars />:<FaTimes />}
             </div>
         </div>

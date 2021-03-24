@@ -27,7 +27,8 @@ export default function setupMockServer() {
           image: faker.random.image(),
           price: faker.commerce.price(),
           inStock: faker.random.boolean(),
-          fastDelivery: faker.random.boolean()
+          fastDelivery: faker.random.boolean(),
+          rating: faker.random.arrayElement([1,2,3,4,5])
         });
       });
     }

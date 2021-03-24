@@ -47,7 +47,15 @@ export default function CartItems() {
             {cart.map(item=>
                 <CartItem item={item} cart={cart} setCart={setCart} />
             )}
-            <h1>Total Cart value: ₹{getTotal()}</h1>
+            {!cart.length && <h1 style={{
+              color:"#D97706",
+              fontSize:"2rem",
+              margin:"4rem 0",
+              opacity:"0.6"}} > Add items in your cart to display here</h1>}
+            <h1 style={{
+                textAlign:"center",
+                width:"100%"
+            }}>Total Cart value: ₹{getTotal()}</h1>
         </div>
     );
 }

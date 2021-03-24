@@ -3,6 +3,14 @@ import axios from "axios";
 import "./Home.css";
 import Product from "../Product/Product";
 
+const ratings = {
+  1: "⭐",
+  2: "⭐⭐",
+  3: "⭐⭐⭐",
+  4: "⭐⭐⭐⭐",
+  5: "⭐⭐⭐⭐⭐",
+};
+
 export default function Home() {
   const [products, setProducts] = useState([]);
 
@@ -99,33 +107,6 @@ export default function Home() {
             <option value="PRICE_LOW_TO_HIGH">Price low to high</option>
           </select>
         </div>
-
-        {/* 
-        <fieldset>
-          <legend>Sort By</legend>
-          <label>
-            <input
-              type="radio"
-              name="sort"
-              onChange={() =>
-                dispatch({ type: "SORT", payload: "PRICE_HIGH_TO_LOW" })
-              }
-              checked={sortBy && sortBy === "PRICE_HIGH_TO_LOW"}
-            ></input>{" "}
-            Price - High to Low
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="sort"
-              onChange={() =>
-                dispatch({ type: "SORT", payload: "PRICE_LOW_TO_HIGH" })
-              }
-              checked={sortBy && sortBy === "PRICE_LOW_TO_HIGH"}
-            ></input>{" "}
-            Price - Low to High
-          </label>
-        </fieldset> */}
         <div className="select-sort">
           <label>
             <input
@@ -158,7 +139,9 @@ export default function Home() {
           <label for="price">₹{maxValue}</label>
         </div>
       </div>
-
+        <div className="home--heading">
+          <h1>Featured Products</h1>
+        </div>
       <div className="products">
         <div className="product-grid">
           {filteredData.map((item) => (
@@ -169,6 +152,7 @@ export default function Home() {
               price={item.price}
               inStock={item.inStock}
               fastDelivery={item.fastDelivery}
+              rating={ratings[item.rating]}
             />
           ))}
         </div>

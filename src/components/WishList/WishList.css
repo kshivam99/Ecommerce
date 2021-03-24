@@ -3,9 +3,22 @@
     width:100%;
     display: flex;
     align-items: center;
+    height: 10rem;
+}
+.wishlist-item>img {
+    height:100%;
+    width: auto;
+    margin-right: 2rem;
 }
 
-.wishlist-item>img {
-    width: 15rem;
+.wishlist-details {
+    display: flex;
+    flex-direction: column;
+}
 
+.wish--btn {
+    margin: 0 2rem;
+    width: 7rem;
+    display: flex;
+    justify-content: space-evenly;
 }

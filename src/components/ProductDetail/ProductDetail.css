@@ -1,9 +1,41 @@
 
 .product--detail {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
 }
 
-.product--detail> img{
+.product--detail--image{
     width: 15rem;
+    margin-left: 2rem;
+    
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 6rem;
+}
+
+.product--details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: auto;
+    width: 75%;
+}
+
+.product--details>h1 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.card-btn {
+    display: flex;
+    width: 40%;
+    justify-content: space-evenly;
+    height: 3rem;
+    align-items: center;
 }

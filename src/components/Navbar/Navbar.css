@@ -7,6 +7,10 @@
     /* border-bottom: 2px solid rgb(39, 179, 235);
     border-radius: 1rem; */
     margin-bottom: 1rem;
+    position: fixed;
+    top:0rem;
+    z-index: 10;
+    background-color: #fff;;
 }
 
 .nav h2 {
@@ -60,6 +64,9 @@
 }
 
 @media screen and (max-width: 760px) {
+    .nav{
+        position: static;
+    }
 
     .nav .menu {
         display: flex;

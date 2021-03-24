@@ -6,6 +6,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .product-card>img {
@@ -16,4 +18,37 @@
     display: flex;
     justify-content: space-between;
     width: 40%;
+}
+
+.badge{
+    position: absolute;
+    background-color: #D97706;
+    padding: 0 0.5rem;
+    border-radius: 2rem 0 0 2rem;
+    top: 4px;
+    right: 0;
+}
+
+/* style={{
+    border: "1px solid black",
+    margin: "2rem 0",
+    minWidth: "70%",
+    padding: "0 1rem",
+    borderRadius: "2rem",
+    textAlign: "center",
+  }} */
+
+.search--bar>input {
+    border: 1px solid black;
+    margin: 2rem 0;
+    min-width: 70%;
+    padding: 0 1rem;
+    border-radius: 2rem;
+    text-align: center;
+    margin-top:2rem;
+}
+@media screen and (max-width: 760px) {
+    .search--bar>input {
+        margin-top:0rem;
+    }
 }
