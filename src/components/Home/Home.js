@@ -2,6 +2,7 @@ import React, { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 import "./Home.css";
 import Product from "../Product/Product";
+import { FcFilledFilter } from "react-icons/fc";
 
 const ratings = {
   1: "⭐",
@@ -13,6 +14,7 @@ const ratings = {
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
     (async function getData() {
@@ -92,9 +94,15 @@ export default function Home() {
 
   return (
     <>
-      <div className="sort">
-        <div className="select-sort">
-          <label for="sort">Sort By:</label>
+      <div className="sort--filter">
+        <FcFilledFilter
+          onClick={()=>setShowFilter(prev=>!prev)}
+          size={32}
+          className="filter--icon"
+        />
+        </div>
+        <div style={{display:showFilter?"":"none"}}className="filter--modal">
+          <label htmlFor="sort">Sort By:</label>
           <select
             onChange={(e) =>
               dispatch({ type: "SORT", payload: e.target.value })
@@ -106,42 +114,47 @@ export default function Home() {
             <option value="PRICE_HIGH_TO_LOW">Price high to low</option>
             <option value="PRICE_LOW_TO_HIGH">Price low to high</option>
           </select>
-        </div>
-        <div className="select-sort">
-          <label>
+          <label class="container">
+            Include Out of Stock
             <input
               type="checkbox"
               checked={showInventoryAll}
               onChange={() => dispatch({ type: "TOGGLE_INVENTORY" })}
             />
-            Include Out of Stock
+            <span class="checkmark"></span>
           </label>
-          <label>
+          <label class="container">
+            Fast Delivery Only
             <input
               type="checkbox"
               checked={showFastDeliveryOnly}
               onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
             />
-            Fast Delivery Only
+            <span class="checkmark"></span>
           </label>
+          <div class="slidecontainer">
+            <input
+              type="range"
+              min="50"
+              max="1000"
+              value={maxValue}
+              class="slider"
+              id="myRange"
+              onChange={(e) => {
+                dispatch({
+                  type: "TOGGLE_PRICE_RANGE",
+                  payload: e.target.value,
+                });
+              }}
+            />
+            <p>
+              Value: <span id="demo">₹{maxValue}</span>
+            </p>
+          </div>
         </div>
-        <div className="select-sort">
-          <input
-            type="range"
-            min="0"
-            max="1000"
-            step="50"
-            value={maxValue}
-            onChange={(e) => {
-              dispatch({ type: "TOGGLE_PRICE_RANGE", payload: e.target.value });
-            }}
-          />
-          <label for="price">₹{maxValue}</label>
-        </div>
+      <div className="home--heading">
+        <h1>Featured Products</h1>
       </div>
-        <div className="home--heading">
-          <h1>Featured Products</h1>
-        </div>
       <div className="products">
         <div className="product-grid">
           {filteredData.map((item) => (
