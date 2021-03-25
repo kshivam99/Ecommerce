@@ -122,8 +122,7 @@ export default function Products() {
           className="filter--icon"
         />
         </div>
-        <div style={{display:showFilter?"":"none",
-            top:"11rem"}}className="filter--modal">
+        <div style={{display:showFilter?"":"none"}}className="filter--modal modal--products">
           <label htmlFor="sort">Sort By:</label>
           <select
             onChange={(e) =>

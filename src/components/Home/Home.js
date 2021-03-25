@@ -101,7 +101,7 @@ export default function Home() {
           className="filter--icon"
         />
         </div>
-        <div style={{display:showFilter?"":"none"}}className="filter--modal">
+        <div style={{display:showFilter?"":"none"}}className="filter--modal modal--home">
           <label htmlFor="sort">Sort By:</label>
           <select
             onChange={(e) =>

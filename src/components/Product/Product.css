@@ -41,6 +41,11 @@
     text-align: center;
     height: 3rem;
 }
+
+.modal--products {
+    top:12rem;
+    right:0;
+}
 @media screen and (max-width: 760px) {
     .search--bar>input {
         min-width: 15rem;

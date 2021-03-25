@@ -12,13 +12,12 @@
   }
 
   .sort--filter{
+      margin-top:1rem;
       margin-left: auto;
       margin-right: 2rem;
-      position: relative;
+      cursor: pointer;
   }
 
-
-  
   .home--heading {
       margin: 2rem 0;
       color:#D97706;
@@ -38,11 +37,13 @@
       border: 1px solid #D97706;
       background-color: #fff;
       position: absolute;
-      right:0;
-      top:22rem;
       z-index:5;
   }
 
+  .modal--home {
+      top:90%;
+      right:2rem;
+  }
   /* The container */
 .container {
     display: block;
@@ -157,6 +158,10 @@
         right: 4rem;
         width:15rem;
         box-sizing: border-box;
+    }
+    .modal--home {
+        top:17rem;
+        right:0;
     }
 
   }
