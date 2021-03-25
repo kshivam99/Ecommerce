@@ -93,65 +93,72 @@ export default function Home() {
   });
 
   return (
-    <>
+    <div className="container--body">
       <div className="sort--filter">
         <FcFilledFilter
-          onClick={()=>setShowFilter(prev=>!prev)}
+          onClick={() => setShowFilter((prev) => !prev)}
           size={32}
           className="filter--icon"
         />
+      </div>
+      <div
+        style={{ display: showFilter ? "" : "none" }}
+        className="filter--modal"
+      >
+        <span
+          onClick={() => setShowFilter((prev) => !prev)}
+          style={{ marginLeft: "auto" }}
+        >
+          X
+        </span>
+        <label htmlFor="sort">Sort By:</label>
+        <select
+          onChange={(e) => dispatch({ type: "SORT", payload: e.target.value })}
+          name="sort"
+          id="sort"
+        >
+          <option value="">Newest First</option>
+          <option value="PRICE_HIGH_TO_LOW">Price high to low</option>
+          <option value="PRICE_LOW_TO_HIGH">Price low to high</option>
+        </select>
+        <label class="container">
+          Include Out of Stock
+          <input
+            type="checkbox"
+            checked={showInventoryAll}
+            onChange={() => dispatch({ type: "TOGGLE_INVENTORY" })}
+          />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">
+          Fast Delivery Only
+          <input
+            type="checkbox"
+            checked={showFastDeliveryOnly}
+            onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
+          />
+          <span class="checkmark"></span>
+        </label>
+        <div class="slidecontainer">
+          <input
+            type="range"
+            min="50"
+            max="1000"
+            value={maxValue}
+            class="slider"
+            id="myRange"
+            onChange={(e) => {
+              dispatch({
+                type: "TOGGLE_PRICE_RANGE",
+                payload: e.target.value,
+              });
+            }}
+          />
+          <p>
+            Value: <span id="demo">₹{maxValue}</span>
+          </p>
         </div>
-        <div style={{display:showFilter?"":"none"}}className="filter--modal modal--home">
-          <label htmlFor="sort">Sort By:</label>
-          <select
-            onChange={(e) =>
-              dispatch({ type: "SORT", payload: e.target.value })
-            }
-            name="sort"
-            id="sort"
-          >
-            <option value="">Newest First</option>
-            <option value="PRICE_HIGH_TO_LOW">Price high to low</option>
-            <option value="PRICE_LOW_TO_HIGH">Price low to high</option>
-          </select>
-          <label class="container">
-            Include Out of Stock
-            <input
-              type="checkbox"
-              checked={showInventoryAll}
-              onChange={() => dispatch({ type: "TOGGLE_INVENTORY" })}
-            />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            Fast Delivery Only
-            <input
-              type="checkbox"
-              checked={showFastDeliveryOnly}
-              onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
-            />
-            <span class="checkmark"></span>
-          </label>
-          <div class="slidecontainer">
-            <input
-              type="range"
-              min="50"
-              max="1000"
-              value={maxValue}
-              class="slider"
-              id="myRange"
-              onChange={(e) => {
-                dispatch({
-                  type: "TOGGLE_PRICE_RANGE",
-                  payload: e.target.value,
-                });
-              }}
-            />
-            <p>
-              Value: <span id="demo">₹{maxValue}</span>
-            </p>
-          </div>
-        </div>
+      </div>
       <div className="home--heading">
         <h1>Featured Products</h1>
       </div>
@@ -170,6 +177,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

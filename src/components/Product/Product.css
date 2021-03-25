@@ -42,10 +42,27 @@
     height: 3rem;
 }
 
-.modal--products {
-    top:12rem;
-    right:0;
-}
+.filter--Productsmodal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: auto;
+    margin-right: 2rem;
+    padding: 1rem;
+    height: 20rem;
+    width: 17rem;
+    border-radius: 1rem;
+    border: 1px solid #d97706;
+    background-color: #fff;
+    z-index: 5;
+    position: absolute;
+    top:10rem;
+    right: 2rem;
+    font-size: 1rem;
+  }
+
+  
 @media screen and (max-width: 760px) {
     .search--bar>input {
         min-width: 15rem;

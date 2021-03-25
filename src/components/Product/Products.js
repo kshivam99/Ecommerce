@@ -107,7 +107,7 @@ export default function Products() {
   });
 
   return (
-    <>
+    <div className="container--body">
       <div className="search--bar">
         <input
           value={inputText}
@@ -122,7 +122,7 @@ export default function Products() {
           className="filter--icon"
         />
         </div>
-        <div style={{display:showFilter?"":"none"}}className="filter--modal modal--products">
+        <div style={{display:showFilter?"":"none"}}className="filter--Productsmodal">
           <label htmlFor="sort">Sort By:</label>
           <select
             onChange={(e) =>
@@ -212,6 +212,6 @@ export default function Products() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
