@@ -111,7 +111,7 @@ export default function Home() {
         >
           X
         </span>
-        <label htmlFor="sort">Sort By:</label>
+        <p>Sort By:</p>
         <select
           onChange={(e) => dispatch({ type: "SORT", payload: e.target.value })}
           name="sort"

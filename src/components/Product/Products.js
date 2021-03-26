@@ -123,6 +123,12 @@ export default function Products() {
         />
         </div>
         <div style={{display:showFilter?"":"none"}}className="filter--Productsmodal">
+        <span
+          onClick={() => setShowFilter((prev) => !prev)}
+          style={{ marginLeft: "auto" }}
+        >
+          X
+        </span>
           <label htmlFor="sort">Sort By:</label>
           <select
             onChange={(e) =>

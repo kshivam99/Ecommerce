@@ -24,15 +24,15 @@ function Header() {
     const [id, setId] = useState(0);
     const length = slider.length;
 
-    useEffect(() => {
-        console.log("hi");
-        const timer = setInterval(() => {
-         setId(prev=> prev===length-1? 0: prev+1);
-        }, 4000);
-        return () => {
-          clearInterval(timer);
-        };
-      }, []);
+    // useEffect(() => {
+    //     console.log("hi");
+    //     const timer = setInterval(() => {
+    //      setId(prev=> prev===length-1? 0: prev+1);
+    //     }, 4000);
+    //     return () => {
+    //       clearInterval(timer);
+    //     };
+    //   }, []);
 
 
     function left() {
@@ -47,10 +47,10 @@ function Header() {
     return (
         <div className="header-body">
             {slider.map((item)=>
-                <div className={item.id===id?"slide":"hide"} key={item.id}>
+                <div className={item.id===id?"slide":""} key={item.id}>
                     { item.id===id && <img src={item.image} alt="" />}
-                    <a className="prev" onClick={left} tabIndex="0">&#10094;</a>
-                    <a className="next" onClick={right} tabIndex="0">&#10095;</a>
+                    <a className={item.id===id?" prev":"hide"} onClick={left} tabIndex="0">&#10094;</a>
+                    <a className={item.id===id?" next":"hide"} onClick={right} tabIndex="0">&#10095;</a>
                 </div>
              )}
                         

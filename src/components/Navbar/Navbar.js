@@ -24,7 +24,7 @@ function Navbar() {
         let total=0;
         cart.map(item=>
             total+=item.quantity);
-        return total?total:null;
+        return total;
     }
     return (
         <div className="nav">
@@ -46,13 +46,13 @@ function Navbar() {
                     <li className="middle" onClick={handleMenuIconClick}>
                         WishList 
                     </li>
-                    { wishList.length?<span className="superscript">{wishList.length}</span>:null}
+                    <span style={{visibility:wishList?"":"hidden"}} className="superscript">{wishList.length}</span>
                 </Link>
                 <Link className="link" to="/cart">
                     <li className="middle">
                         <MdShoppingBasket size={28} onClick={handleMenuIconClick} /> 
                     </li>
-                    { cart.length?<span style={{bottom:"1rem"}} className="superscript">{totalItems()}</span>:null}
+                    <span style={{bottom:"1rem", visibility:cart?"":"hidden"}} className="superscript">{totalItems()}</span>
                 </Link>
                 
             </ul>   

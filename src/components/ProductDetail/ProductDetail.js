@@ -84,7 +84,7 @@ function ProductDetail() {
           </Link>
         </div>
         <div className="wish" onClick={handleWish}>
-          {!isWish() ? <BsHeart size={32} /> : <BsHeartFill size={32} />}
+          {!isWish() ? <BsHeart size={26} /> : <BsHeartFill size={26} />}
         </div>
       </div>
       <div className="comments">
