@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Product.css";
 import Product from "./Product";
 import { FcFilledFilter } from "react-icons/fc";
+import { AiOutlineCloseCircle } from "react-icons/ai"
+
 
 const ratings = {
   1: "⭐",
@@ -123,12 +125,8 @@ export default function Products() {
         />
         </div>
         <div style={{display:showFilter?"":"none"}}className="filter--Productsmodal">
-        <span
-          onClick={() => setShowFilter((prev) => !prev)}
-          style={{ marginLeft: "auto" }}
-        >
-          X
-        </span>
+          <AiOutlineCloseCircle  onClick={() => setShowFilter((prev) => !prev)}
+          style={{ marginLeft: "auto" }}/>
           <label htmlFor="sort">Sort By:</label>
           <select
             onChange={(e) =>

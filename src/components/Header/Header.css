@@ -6,7 +6,6 @@
     justify-content: flex-start;
     align-items: center;
     margin-top:5rem;
-    height: 100%;
 }
 
 .slide {
@@ -86,7 +85,7 @@
     }
 
   }
-  @media only screen and (min-width: 760px) and (max-width: 1300px){
+  @media only screen and (min-width: 760px) and (max-width: 1000px){
 
     .header-body {
       margin-top: 4rem;
