@@ -1,6 +1,5 @@
 .product-grid {
   display: grid;
-  /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   align-items: center;
   justify-items: center;
@@ -9,6 +8,15 @@
 
 .products {
   width: 100%;
+}
+
+.categories{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  align-items: center;
+  row-gap:1rem;
+  justify-items: center;
+  box-sizing: border-box;
 }
 
 .sort--filter {
@@ -32,11 +40,11 @@
   margin-right: 1rem;
   padding: 1rem;
   height: 20rem;
-  width: auto;
+  width: 15rem;
   border-radius: 1rem;
   border: 1px solid #d97706;
   background-color: #fff;
-  z-index: 5;
+  z-index: 15;
   position: absolute;
   top:2rem;
   right: 0;

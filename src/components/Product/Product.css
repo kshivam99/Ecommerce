@@ -1,13 +1,18 @@
 .product-card {
     margin:2rem;
     min-width: 15rem;
-    min-height: 15rem;
+    min-height: 23rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     position: relative;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 1rem 0.5rem;
+    border-radius: 1rem;
+}
+.product-card .grow{
+    flex-grow: 1;
 }
 
 .product-card>img {
@@ -25,7 +30,7 @@
     background-color: #D97706;
     padding: 0 0.5rem;
     border-radius: 2rem 0 0 2rem;
-    top: 4px;
+    top: 0.5rem;
     right: 0;
 }
 

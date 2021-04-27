@@ -1,14 +1,65 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import { useWishList } from "../../contexts/wishListContext";
 import "./WishList.css";
 import { useCart } from "../../contexts/cartContext";
 import { BsHeartFill } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
+import { useAuth } from "../../contexts/authContext";
+import axios from "axios";
 
 
 function WishList() {
+  const { auth } = useAuth();
   const { wishList, setWishList } = useWishList();
   const { cart, setCart } = useCart();
+
+  useEffect(async () => {
+    if (auth) {
+      try {
+        (async function postCart() {
+          const response = await axios.post(
+            "https://whispering-cove-66440.herokuapp.com/cart",
+            {
+              cart: cart,
+            },
+            {
+              headers: {
+                "auth-token": auth.token,
+              },
+            }
+          );
+          console.log("cart", response.data.cart);
+          localStorage.setItem("cart", JSON.stringify(response.data.cart));
+        })();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, [cart]);
+
+  useEffect(async () => {
+    if (auth) {
+      try {
+        (async function postCart() {
+          const response = await axios.post(
+            "https://whispering-cove-66440.herokuapp.com/wish",
+            {
+              wishList: wishList,
+            },
+            {
+              headers: {
+                "auth-token": auth.token,
+              },
+            }
+          );
+          console.log("cart", response.data.wishList);
+          localStorage.setItem("wish", JSON.stringify(response.data.wishList));
+        })();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, [wishList]);
 
   function removeWish(id) {
     setWishList((prev) => prev.filter((curr) => curr.id !== id));
@@ -43,10 +94,10 @@ function WishList() {
     <div>
       {wishList.map((item) => (
         <div className="wishlist-item">
-          <img src={item.image} alt="" />
+          <img src={item.images[0]} alt="" />
           <div className="wishlistdetails">
             <h1>{item.name}</h1>
-            <h1>₹{item.price}</h1>
+            <h1>₹{item.new_price}</h1>
           </div>
           <div className="wish--btn">
             <BsHeartFill onClick={() => removeWish(item.id)} size={32} />
