@@ -117,11 +117,10 @@ export default function CartItems() {
     return total;
   }
 
-  function handleLogout() {
-    setAuth(null);
-    setCart([]);
-    localStorage.clear();
-  }
+  // function handleLogout() {
+  //   setAuth(null);
+  //   localStorage.clear();
+  // }
   return (
     <div className="cartItems">
       {isLoading ? (
@@ -152,7 +151,7 @@ export default function CartItems() {
           >
             Total Cart value: ₹{getTotal()}
           </h1>
-          <button onClick={handleLogout}>Logout</button>
+          {/* <button onClick={handleLogout}>Logout</button> */}
         </>
       )}
     </div>

@@ -11,8 +11,8 @@ import { useAuth } from "../../contexts/authContext";
 function Navbar() {
   const { auth, setAuth } = useAuth();
   const [showDropDownNav, setShowDropDownNav] = useState(false);
-  const { cart } = useCart();
-  const { wishList } = useWishList();
+  const { cart, setCart } = useCart();
+  const { wishList, setWishList } = useWishList();
 
   function handleMenuIconClick() {
     setShowDropDownNav((prev) => !prev);
@@ -23,6 +23,14 @@ function Navbar() {
     cart.map((item) => (total += item.quantity));
     return total;
   }
+
+  function handleLogout() {
+    setAuth(null);
+    setCart([]);
+    setWishList([]);
+    localStorage.clear();
+  }
+
   return (
     <div className="nav">
       <Link className="link" to="/">
@@ -31,9 +39,17 @@ function Navbar() {
       <ul className={!showDropDownNav ? "menu" : "menu active"}>
       <Link className="link" to="/login">
           <li className="middle" onClick={handleMenuIconClick}>
-            {auth ? `Hi, ${auth.user.name}` : "Sign In"}
+            {!auth && "Sign In"}
           </li>
         </Link>
+        <li className="middle" onClick={handleMenuIconClick}>
+            {auth && `Hi, ${auth.user.name}`}
+          </li>
+          <li className="middle" onClick={()=>{
+            handleLogout()
+            handleMenuIconClick()}}>
+            {auth && `Sign Out`}
+          </li>
         <Link className="link" to="/products/all">
           <li className="middle" onClick={handleMenuIconClick}>
             Products
