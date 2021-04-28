@@ -238,7 +238,7 @@ function ProductDetail() {
               {!isWish() ? <BsHeart size={26} /> : <BsHeartFill size={26} />}
             </div>
           </div>
-          <div className="comments">
+          {/* <div className="comments">
             <h1>Reviews</h1>
             <input
               value={review}
@@ -249,7 +249,7 @@ function ProductDetail() {
             {reviews.map((curr) => (
               <p>{curr}</p>
             ))}
-          </div>
+          </div> */}
         </>
       )}
     </div>
