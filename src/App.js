@@ -33,15 +33,15 @@ export default function App() {
       try {
         (async function getData() {
           const res = await axios.get(
-            "https://whispering-cove-66440.herokuapp.com/cart",
+            "https://protected-bastion-58177.herokuapp.com/cart",
             {
               headers: {
                 "auth-token": auth.token,
               },
             }
           );
-          console.log(res);
-          setCart(res.data.cart);
+          console.log("carts", res);
+          res.data && setCart(res.data.cart);
         })();
       } catch (err) {
         console.log(err);
@@ -54,15 +54,15 @@ export default function App() {
       try {
         (async function getData() {
           const res = await axios.get(
-            "https://whispering-cove-66440.herokuapp.com/wish",
+            "https://protected-bastion-58177.herokuapp.com/wish",
             {
               headers: {
                 "auth-token": auth.token,
               },
             }
           );
-          console.log(res);
-          setWishList(res.data.wishList);
+          console.log("wishes",res);
+          res.data && setWishList(res.data.wishList);
         })();
       } catch (err) {
         console.log(err);

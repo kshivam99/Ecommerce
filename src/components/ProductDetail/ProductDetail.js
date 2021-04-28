@@ -61,7 +61,7 @@ function ProductDetail() {
       try {
         (async function postCart() {
           const response = await axios.post(
-            "https://whispering-cove-66440.herokuapp.com/cart",
+            "https://protected-bastion-58177.herokuapp.com/cart",
             {
               cart: cart,
             },
@@ -86,7 +86,7 @@ function ProductDetail() {
       try {
         (async function postCart() {
           const response = await axios.post(
-            "https://whispering-cove-66440.herokuapp.com/wish",
+            "https://protected-bastion-58177.herokuapp.com/wish",
             {
               wishList: wishList,
             },
@@ -96,8 +96,8 @@ function ProductDetail() {
               },
             }
           );
-          console.log("cart", response.data.wishList);
-          localStorage.setItem("wish", JSON.stringify(response.data.wishList));
+          console.log("wish", response.data.wishList);
+          response.data.wishList && localStorage.setItem("wish", JSON.stringify(response.data.wishList));
         })();
       } catch (err) {
         console.log(err);
@@ -110,7 +110,7 @@ function ProductDetail() {
       (async function getData() {
         setIsLoading(true);
         const response = await axios.get(
-          `https://whispering-cove-66440.herokuapp.com/products/${id}`
+          `https://protected-bastion-58177.herokuapp.com/products/${id}`
         );
         setProduct(response.data);
         setProduct((prev) => {

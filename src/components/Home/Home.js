@@ -27,9 +27,8 @@ export default function Home() {
       (async function getData() {
         setIsLoading(true);
         const response = await axios.get(
-          "https://whispering-cove-66440.herokuapp.com/products"
+          "https://protected-bastion-58177.herokuapp.com/products"
         );
-        console.log(response.data);
         setProducts(response.data);
         setIsLoading(false);
       })();

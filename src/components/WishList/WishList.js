@@ -1,4 +1,4 @@
-import React,{ useEffect } from "react";
+import React,{ useEffect, useState } from "react";
 import { useWishList } from "../../contexts/wishListContext";
 import "./WishList.css";
 import { useCart } from "../../contexts/cartContext";
@@ -12,13 +12,39 @@ function WishList() {
   const { auth } = useAuth();
   const { wishList, setWishList } = useWishList();
   const { cart, setCart } = useCart();
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  useEffect(() => {
+    if (auth) {
+      try {
+        (async function getData() {
+          setIsLoading(true);
+          const res = await axios.get(
+            "https://protected-bastion-58177.herokuapp.com/wish",
+            {
+              headers: {
+                "auth-token": auth.token,
+              },
+            }
+          );
+          console.log(res);
+          setIsLoading(false);
+          setWishList(res.data.wishList);
+        })();
+      } catch (err) {
+        setIsLoading(false);
+        console.log(err);
+      }
+    }
+  }, []);
 
   useEffect(async () => {
     if (auth) {
       try {
         (async function postCart() {
           const response = await axios.post(
-            "https://whispering-cove-66440.herokuapp.com/cart",
+            "https://protected-bastion-58177.herokuapp.com/cart",
             {
               cart: cart,
             },
@@ -37,12 +63,13 @@ function WishList() {
     }
   }, [cart]);
 
+
   useEffect(async () => {
     if (auth) {
       try {
         (async function postCart() {
           const response = await axios.post(
-            "https://whispering-cove-66440.herokuapp.com/wish",
+            "https://protected-bastion-58177.herokuapp.com/wish",
             {
               wishList: wishList,
             },
@@ -82,8 +109,8 @@ function WishList() {
         {
           id: item.id,
           name: item.name,
-          image: item.image,
-          price: item.price,
+          images: item.images,
+          new_price: item.new_price,
           quantity: 1,
         },
       ]);

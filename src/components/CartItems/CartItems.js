@@ -67,7 +67,7 @@ export default function CartItems() {
         (async function getData() {
           setIsLoading(true);
           const res = await axios.get(
-            "https://whispering-cove-66440.herokuapp.com/cart",
+            "https://protected-bastion-58177.herokuapp.com/cart",
             {
               headers: {
                 "auth-token": auth.token,
@@ -90,7 +90,7 @@ export default function CartItems() {
       try {
         (async function postCart() {
           const response = await axios.post(
-            "https://whispering-cove-66440.herokuapp.com/cart",
+            "https://protected-bastion-58177.herokuapp.com/cart",
             {
               cart: cart,
             },

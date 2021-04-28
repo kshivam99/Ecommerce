@@ -14,7 +14,7 @@ function SignUp({ setIsRegistered }) {
   async function handleSignUp() {
     try {
       const res = await axios.post(
-        "https://whispering-cove-66440.herokuapp.com/auth/register",
+        "https://protected-bastion-58177.herokuapp.com/auth/register",
         {
           name: name,
           email: email,

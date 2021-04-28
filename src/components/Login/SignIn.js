@@ -20,7 +20,7 @@ function SignIn({setIsRegistered}) {
     try {
         setIsLoading(true);
       const res = await axios.post(
-        "https://whispering-cove-66440.herokuapp.com/auth/login",
+        "https://protected-bastion-58177.herokuapp.com/auth/login",
         {
           email: email,
           password: password,
