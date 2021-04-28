@@ -30,7 +30,7 @@ function WishList() {
           );
           console.log(res);
           setIsLoading(false);
-          setWishList(res.data.wishList);
+          res.data.wishList && setWishList(res.data.wishList);
         })();
       } catch (err) {
         setIsLoading(false);

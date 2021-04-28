@@ -247,7 +247,7 @@ export default function Products() {
         <div class="slidecontainer">
           <input
             type="range"
-            min="50"
+            min="1000"
             max="100000"
             value={maxValue}
             class="slider"

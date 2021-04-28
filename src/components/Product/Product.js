@@ -10,6 +10,7 @@ function Product({ id, name, image, price, inStock, fastDelivery, rating }) {
     <>
       <Link className="link" to={`/product/${id}`}>
         <div
+          key={id}
           className="product-card"
           style={{
             opacity:inStock?"1":"0.3"

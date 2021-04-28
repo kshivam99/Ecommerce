@@ -76,7 +76,7 @@ export default function CartItems() {
           );
           console.log(res);
           setIsLoading(false);
-          setCart(res.data.cart);
+          res.data.cart && setCart(res.data.cart);
         })();
       } catch (err) {
         setIsLoading(false);
