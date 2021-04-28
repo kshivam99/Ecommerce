@@ -31,7 +31,9 @@ function SignIn({setIsRegistered}) {
       if (!res.data.token) {
         setError(res.data);
       } else {
-          toast("Logged in Successfully");
+          toast("Logged in Successfully",{
+            type:"success"
+          });
         setAuth(res.data);
         setAuth((prev) => {
           localStorage.setItem("auth", JSON.stringify(prev));

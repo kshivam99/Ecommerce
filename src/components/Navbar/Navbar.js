@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 import { useWishList } from "../../contexts/wishListContext";
 import { useAuth } from "../../contexts/authContext";
+import { useToast } from "../../contexts/toastContext";
 
 function Navbar() {
   const { auth, setAuth } = useAuth();
+  const { toast } = useToast();
   const [showDropDownNav, setShowDropDownNav] = useState(false);
   const { cart, setCart } = useCart();
   const { wishList, setWishList } = useWishList();
@@ -29,6 +31,9 @@ function Navbar() {
     setCart([]);
     setWishList([]);
     localStorage.clear();
+    toast("Logged out Successfully",{
+      type:"success"
+    })
   }
 
   return (

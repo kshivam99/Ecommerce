@@ -98,7 +98,7 @@ export default function App() {
         </Switch>
       </Router>
       <ToastContainer
-        style={{ position: "fixed", top: "85vh", right: "1rem" }}
+        style={{ position: "fixed", top: "80vh", right: "1rem" }}
       />
       {/* <Footer /> */}
     </div>

@@ -135,9 +135,16 @@ function ProductDetail() {
     if (auth) {
       if (filterItems(wishList, id).length !== 0) {
         setWishList((prev) => prev.filter((curr) => curr.id !== id));
+        toast(`${name} removed from Wishlist`,{
+          type:"success"
+        })
       } else {
         setWishList([...wishList, { id, name, images, new_price }]);
+        toast(`${name} added to Wishlist`,{
+          type:"success"
+        })
       }
+      
     }
   }
 
@@ -156,8 +163,13 @@ function ProductDetail() {
       } else {
         setCart([...cart, { id, name, images, new_price, quantity: 1 }]);
       }
+      toast(`${name} added to cart`, {
+        type: "success"
+      });
     } else {
-      toast("Sign in to add to cart");
+      toast("Sign in to add to cart",{
+        type: "error"
+      });
     }
   }
 

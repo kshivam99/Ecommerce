@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useToast } from "../../contexts/toastContext";
+
 
 
 function SignUp({ setIsRegistered }) {
   const [error, setError] = useState("");
+  const { toast } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,6 +30,9 @@ function SignUp({ setIsRegistered }) {
       }
       else{
         setIsRegistered(true);
+        toast("Signed Up Successfully, Login to Continue",{
+          type:"success"
+        });
       }
     } catch (err) {
       console.log(err);

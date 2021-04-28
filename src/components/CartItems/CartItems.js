@@ -5,8 +5,11 @@ import { useAuth } from "../../contexts/authContext";
 import { useWishList } from "../../contexts/wishListContext";
 import axios from "axios";
 import Loader from "react-loader-spinner";
+import { useToast } from "../../contexts/toastContext";
 
 function CartItem({ item, cart, setCart }) {
+  const { toast } = useToast();
+
   function incItem() {
     setCart((prev) =>
       prev.map((curr) =>
@@ -24,19 +27,25 @@ function CartItem({ item, cart, setCart }) {
           : (bool = false)
         : null
     );
-    bool
-      ? setCart((prev) => prev.filter((curr) => curr.id !== item.id))
-      : setCart((prev) =>
-          prev.map((curr) =>
-            curr.id === item.id
-              ? { ...curr, quantity: curr.quantity - 1 }
-              : curr
-          )
-        );
+    if (bool) {
+      setCart((prev) => prev.filter((curr) => curr.id !== item.id));
+      toast(`${item.name} removed from cart`,{
+        type:"success"
+      });
+    } else {
+      setCart((prev) =>
+        prev.map((curr) =>
+          curr.id === item.id ? { ...curr, quantity: curr.quantity - 1 } : curr
+        )
+      );
+    }
   }
 
   function removeItem() {
     setCart((prev) => prev.filter((curr) => curr.id !== item.id));
+    toast(`${item.name} removed from cart`,{
+      type:"success"
+    })
   }
 
   return (

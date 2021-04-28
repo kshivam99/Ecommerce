@@ -6,10 +6,13 @@ import { BsHeartFill } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import { useAuth } from "../../contexts/authContext";
 import axios from "axios";
+import { useToast } from "../../contexts/toastContext";
+
 
 
 function WishList() {
   const { auth } = useAuth();
+  const { toast } = useToast();
   const { wishList, setWishList } = useWishList();
   const { cart, setCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
@@ -88,8 +91,11 @@ function WishList() {
     }
   }, [wishList]);
 
-  function removeWish(id) {
-    setWishList((prev) => prev.filter((curr) => curr.id !== id));
+  function removeWish(item) {
+    setWishList((prev) => prev.filter((curr) => curr.id !== item.id));
+    toast(`${item.name} removed from wishlist`, {
+      type: "success"
+    });
   }
 
   function filterItems(items, id) {
@@ -115,6 +121,9 @@ function WishList() {
         },
       ]);
     }
+    toast(`${item.name} added to cart`, {
+      type: "success"
+    });
   }
 
   return (
@@ -127,7 +136,7 @@ function WishList() {
             <h1>₹{item.new_price}</h1>
           </div>
           <div className="wish--btn">
-            <BsHeartFill onClick={() => removeWish(item.id)} size={32} />
+            <BsHeartFill onClick={() => removeWish(item)} size={32} />
             <BiCart size={32} onClick={() => addToCart(item)} />
           </div>
         </div>
