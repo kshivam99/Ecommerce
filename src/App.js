@@ -79,7 +79,7 @@ export default function App() {
             {auth ? <Redirect to="/cartItems" /> : <Login />})
           </Route>
           <Route path="/cartItems">
-            <CartItems />
+            {auth && <CartItems />}
           </Route>
           <Route exact path="/">
             <Header />

@@ -3,11 +3,10 @@ import axios from "axios";
 import { useCart } from "../../contexts/cartContext";
 import { useAuth } from "../../contexts/authContext";
 import { useWishList } from "../../contexts/wishListContext";
-import { Link } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import "./ProductDetail.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import ReactImageMagnify from "react-image-magnify";
 import { BiRupee } from "react-icons/bi";
@@ -56,7 +55,7 @@ function ProductDetail() {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (auth) {
       try {
         (async function postCart() {
@@ -81,7 +80,7 @@ function ProductDetail() {
     }
   }, [cart]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (auth) {
       try {
         (async function postCart() {
