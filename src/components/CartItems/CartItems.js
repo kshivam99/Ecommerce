@@ -94,7 +94,7 @@ export default function CartItems() {
     }
   }, []);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (auth) {
       try {
         (async function postCart() {

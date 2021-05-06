@@ -1,7 +1,7 @@
-.product-card {
+.card1--body{
     margin:2rem;
     width: 15rem;
-    min-height: 23rem;
+    height: 23rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,29 +10,76 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 1rem 0.5rem;
     border-radius: 1rem;
-}
-.product-card .grow{
-    flex-grow: 1;
-}
-
-.product-card>img {
-    width:15rem;
-}
-
-.product-card .card-btn {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-}
-
-.badge{
+    z-index: 1;
+    cursor:pointer;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .card1--body > img{
+    width:auto;
+    height:50%;
+  }
+  
+  .card1--body .badge{
     position: absolute;
     background-color: #D97706;
-    padding: 0 0.5rem;
+    color:#fff;
+    padding: 0 1rem;
     border-radius: 2rem 0 0 2rem;
-    top: 0.5rem;
+    top: 1rem;
     right: 0;
-}
+  }
+  
+  .rating--row{
+    display: flex;
+  }
+  
+  .rating--row p{
+    color: grey;
+  }
+  .card1--body .card--details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .price--row{
+    margin:1rem auto;
+    width: auto;
+    justify-content: space-around;
+  }
+  .new__price{
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .old__price{
+    display: inline-flex;
+    align-items: center;
+    color: grey;
+    text-decoration: line-through;
+  }
+  .offer{
+    color:#00e600;
+    display: inline-flex;
+  }
+  
+  .card1--body .card--details h4{
+    width:80%;
+    text-align: center;
+  }
+  
+  .overlay{
+    position:absolute;
+    width:15rem;
+    height:23rem;
+    top:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 1rem;
+    z-index: 2;
+    color:rgb(241, 46, 46);
+  }
 
 .search--bar{
     margin-top: 5rem;

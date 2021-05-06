@@ -7,14 +7,6 @@ import Loader from "react-loader-spinner";
 import Filter from "./Filter";
 
 
-const ratings = {
-  0: "No reviews yet",
-  1: "⭐",
-  2: "⭐⭐",
-  3: "⭐⭐⭐",
-  4: "⭐⭐⭐⭐",
-  5: "⭐⭐⭐⭐⭐",
-};
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -126,9 +118,10 @@ export default function Home() {
                 name={item.name}
                 image={item.images[0]}
                 price={item.new_price}
+                o_price={item.old_price}
                 inStock={item.stock}
                 fastDelivery={item.featured}
-                rating={ratings[item.rating]}
+                rating={item.rating}
               />
             ))
           )}

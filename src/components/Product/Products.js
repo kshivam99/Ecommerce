@@ -41,9 +41,10 @@ function RenderProducts({inputText, output, filteredData}) {
                 name={item.name}
                 image={item.images[0]}
                 price={item.new_price}
+                o_price={item.old_price}
                 inStock={item.stock}
                 fastDelivery={item.featured}
-                rating={ratings[item.rating]}
+                rating={item.rating}
               />
             ))
           : filteredData.map((item) => (
@@ -52,9 +53,10 @@ function RenderProducts({inputText, output, filteredData}) {
                 name={item.name}
                 image={item.images[0]}
                 price={item.new_price}
+                o_price={item.old_price}
                 inStock={item.stock}
                 fastDelivery={item.featured}
-                rating={ratings[item.rating]}
+                rating={item.rating}
               />
             ))}
         {!output.length && inputText && (

@@ -47,9 +47,9 @@ function Navbar() {
             {!auth && "Sign In"}
           </li>
         </Link>
-        <li className="middle" style={{display:auth?"":"none"}} onClick={handleMenuIconClick}>
+        {/* <li className="middle" style={{display:auth?"":"none"}} onClick={handleMenuIconClick}>
             {auth && `Hi, ${auth.user.name}`}
-          </li>
+          </li> */}
           <li className="middle" style={{display:auth?"":"none"}} onClick={()=>{
             handleLogout()
             handleMenuIconClick()}}>

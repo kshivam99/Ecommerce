@@ -100,7 +100,6 @@ export default function App() {
       <ToastContainer
         style={{ position: "fixed", top: "80vh", right: "1rem" }}
       />
-      {/* <Footer /> */}
     </div>
   );
 }

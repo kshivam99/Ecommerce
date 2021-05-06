@@ -2,11 +2,12 @@ import React,{ useEffect, useState } from "react";
 import { useWishList } from "../../contexts/wishListContext";
 import "./WishList.css";
 import { useCart } from "../../contexts/cartContext";
-import { BsHeartFill } from "react-icons/bs";
-import { BiCart } from "react-icons/bi";
+import { BiRupee } from "react-icons/bi";
+import { AiFillStar } from "react-icons/ai";
 import { useAuth } from "../../contexts/authContext";
 import axios from "axios";
 import { useToast } from "../../contexts/toastContext";
+import { BsHeartFill } from "react-icons/bs";
 
 
 
@@ -127,19 +128,35 @@ function WishList() {
   }
 
   return (
-    <div>
+    <div className="wishlist--container">
       {wishList.map((item) => (
-        <div className="wishlist-item">
-          <img src={item.images[0]} alt="" />
-          <div className="wishlistdetails">
-            <h1>{item.name}</h1>
-            <h1>₹{item.new_price}</h1>
-          </div>
-          <div className="wish--btn">
-            <BsHeartFill onClick={() => removeWish(item)} size={32} />
-            <BiCart size={32} onClick={() => addToCart(item)} />
-          </div>
-        </div>
+         <div className="card2--body">
+         <img
+           src={item.images[0]}
+           alt=""
+         />
+         <div className="card--details">
+           <div className="rating--row">
+             {[...Array(item.rating)].map((i) => (
+               <AiFillStar color={"#D97706"} size={24} />
+             ))}
+           </div>
+           <h4>{item.name}</h4>
+           <h5 className="new__price">
+             <BiRupee />
+             {item.new_price}
+           </h5>
+           <h5 className="old__price">
+             <BiRupee />
+             {item.old_price}
+           </h5>
+           <h5 className="offer">16% OFF</h5>
+         <div className="btn--row">
+           <button className="btn--primary btn-md" onClick={() => addToCart(item)}>Add to cart</button>
+           <BsHeartFill onClick={() => removeWish(item)} size={26}/>
+         </div>
+         </div>
+       </div>
       ))}
       <h4
         style={{

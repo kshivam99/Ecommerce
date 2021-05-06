@@ -6,20 +6,11 @@ import { useWishList } from "../../contexts/wishListContext";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import "./ProductDetail.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import ReactImageMagnify from "react-image-magnify";
 import { BiRupee } from "react-icons/bi";
 import { useToast } from "../../contexts/toastContext";
-
-const ratings = {
-  0: "Be the first one to review",
-  1: "⭐",
-  2: "⭐⭐",
-  3: "⭐⭐⭐",
-  4: "⭐⭐⭐⭐",
-  5: "⭐⭐⭐⭐⭐",
-};
 
 function ProductDetail() {
   const { toast } = useToast();
@@ -53,6 +44,7 @@ function ProductDetail() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log("scrolling to top")
   }, []);
 
   useEffect(() => {
@@ -138,7 +130,7 @@ function ProductDetail() {
           type:"success"
         })
       } else {
-        setWishList([...wishList, { id, name, images, new_price }]);
+        setWishList([...wishList, { id, name, images, new_price, old_price, rating }]);
         toast(`${name} added to Wishlist`,{
           type:"success"
         })
@@ -238,7 +230,7 @@ function ProductDetail() {
                 {description && description.map((item) => <ul>{item}</ul>)}
               </div>
               <p>fast Delivery {featured ? "Available" : "Nope"}</p>
-              <p>{ratings[rating]}</p>
+              <p>{rating}</p>
             </div>
           </div>
           <div className="card-btn">
