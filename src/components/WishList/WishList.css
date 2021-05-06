@@ -1,24 +1,102 @@
-.wishlist-item {
-    margin: 2rem 0;
-    width:100%;
-    display: flex;
-    align-items: center;
-    height: 10rem;
-}
-.wishlist-item>img {
-    height:100%;
-    width: auto;
-    margin-right: 2rem;
-}
-
-.wishlist-details {
+.wishlist--container{
     display: flex;
     flex-direction: column;
+    margin-top: 8rem;
+    align-items: center;
+    width: 100%;
 }
 
-.wish--btn {
-    margin: 0 2rem;
-    width: 7rem;
+.card2--body{
     display: flex;
-    justify-content: space-evenly;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-left: 2rem;
+    border-radius: 1rem;
+    height:15rem;
+    font-family: 'Montserrat', sans-serif;
+    width:60%;
+    margin: 1rem;
+
+  }
+  
+  .card2--body img {
+    width:auto;
+    height:100%;
+    margin-right: 2rem;
+  }
+  .card2--body .card--details{
+    width: 80%;
+    padding: 2rem 0;
+    text-align: left;
+    overflow-y: hidden;
+  }
+  
+  .card2--body .card--details .rating--row{
+    margin: 1rem 0;
+  }
+  .card2--body .new__price{
+    margin:1rem 0;
+  }
+  .card2--body .new__price{
+    font-size: 1.5rem;
+  }
+   .offer{
+    margin:0 1rem;
+    color:#00e600;
+  }
+  .card2--body .old__price{
+    margin:0.5rem;
+  }
+  
+  .card2--body .btn--row{
+    margin:1rem 0;
+    display: flex;
+    align-items: center;
+  }
+  .card2--body .btn--primary{
+    margin:0 1rem;
+  }
+  .card2--body .btn--outline{
+    margin:0 1rem;
+  }
+  
+  .btn--primary{
+    margin:1rem;
+    user-select: none;
+    border-radius: 1rem;
+    border:none;
+    color:#fff;
+    font-size: 1rem;
+    background-color: #D97706;
 }
+.btn-lg{
+    padding: 1rem;
+    min-width: 10rem;
+}
+
+.btn-md{
+    padding:0.5rem 1rem;
+}
+
+.btn--outline{
+    border: 1px solid black;
+    border-radius: 1rem;
+}
+
+   
+@media screen and (max-width: 760px) {
+    .wishlist--container{
+        margin-top: 0;
+    }
+    .card2--body{
+        flex-direction: column;
+        height: auto;
+        width: 17rem;
+        height: 25rem;
+    }
+    .card2--body img{
+        margin-top: 1rem;
+        height: 30%;
+        width: auto;
+    }
+}
+

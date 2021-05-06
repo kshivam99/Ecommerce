@@ -6,6 +6,7 @@
     justify-content: flex-start;
     align-items: center;
     margin-top:5rem;
+    /* height: 30rem; */
 }
 
 .slide {
@@ -15,7 +16,7 @@
     animation-duration: 1.5s;
 }
 @keyframes fade-in {
-    from {right: -50%;
+    from {right: -20%;
           opacity: 0;}
     to {right: 0%;
         opacity: 1;}

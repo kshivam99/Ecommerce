@@ -1,22 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import setupMockServer from "./api/mock.server";
 import App from "./App";
-import  { CartProvider } from "./contexts/cartContext";
+import { CartProvider } from "./contexts/cartContext";
 import { WishListProvider } from "./contexts/wishListContext";
-import { ProductProvider } from "./contexts/productContext";
+import { AuthProvider } from "./contexts/authContext";
+import { LoginModalProvider } from "./contexts/loginModal";
+import { ToastProvider } from "./contexts/toastContext";
 
-
-setupMockServer();
+import { IconContext } from "react-icons";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-    <CartProvider>
-      <WishListProvider>
-        <ProductProvider>
-        <App />
-        </ProductProvider>
-      </WishListProvider>
-    </CartProvider>,
+  <AuthProvider>
+    <ToastProvider>
+      <LoginModalProvider>
+        <CartProvider>
+          <WishListProvider>
+            <IconContext.Provider value={{ color: "#D97706" }}>
+              <App />
+            </IconContext.Provider>
+          </WishListProvider>
+        </CartProvider>
+      </LoginModalProvider>
+    </ToastProvider>
+  </AuthProvider>,
   rootElement
 );

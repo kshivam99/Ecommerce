@@ -6,41 +6,32 @@
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
   user-select: none;
   overflow-x: hidden;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .App {
   font-family: sans-serif;
   text-align: center;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
 }
-
-/* .App .product-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+p{
+  display: inline-flex;
   align-items: center;
-  justify-items: center;
-} */
-
+}
 @media screen and (max-width: 760px) {
-  /* 
-  .App .product-grid {
-    display:flex;
-    flex-direction: column; 
-    width:100%;
-    align-items: center;
-   } */
+  
 }

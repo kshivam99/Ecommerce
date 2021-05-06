@@ -3,10 +3,13 @@ import axios from "axios";
 import "./Product.css";
 import Product from "./Product";
 import { FcFilledFilter } from "react-icons/fc";
-import { AiOutlineCloseCircle } from "react-icons/ai"
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import Loader from "react-loader-spinner";
+import { useParams } from "react-router-dom";
 
 
 const ratings = {
+  0: "No reviews yet",
   1: "⭐",
   2: "⭐⭐",
   3: "⭐⭐⭐",
@@ -14,12 +17,87 @@ const ratings = {
   5: "⭐⭐⭐⭐⭐",
 };
 
+function SearchBar({inputText, setInputText }){
+  return(
+    <>
+    <div className="search--bar">
+      <input
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        placeholder="What are you looking for?"
+      />
+    </div>
+    </>
+  )
+}
+
+function RenderProducts({inputText, output, filteredData}) {
+  return(
+    <>
+    {inputText.length
+          ? output.map((item) => (
+              <Product
+                id={item._id}
+                name={item.name}
+                image={item.images[0]}
+                price={item.new_price}
+                o_price={item.old_price}
+                inStock={item.stock}
+                fastDelivery={item.featured}
+                rating={item.rating}
+              />
+            ))
+          : filteredData.map((item) => (
+              <Product
+                id={item._id}
+                name={item.name}
+                image={item.images[0]}
+                price={item.new_price}
+                o_price={item.old_price}
+                inStock={item.stock}
+                fastDelivery={item.featured}
+                rating={item.rating}
+              />
+            ))}
+        {!output.length && inputText && (
+          <h1
+            style={{
+              color: "#D97706",
+              fontSize: "2rem",
+              margin: "4rem 0",
+              opacity: "0.6",
+            }}
+          >
+            Sorry {inputText} is not available
+          </h1>
+        )}
+    </>
+  )
+}
+
+function ProductsGrid({isLoading, inputText, output, filteredData}) {
+  return(
+    <>
+    <div className="products">
+      <div className="product-grid">
+        {isLoading?
+        <Loader type="TailSpin" color="#F59E0B" height={100} width={100} />
+        :
+        <RenderProducts inputText={inputText} output={output} filteredData={filteredData} />
+        }
+      </div>
+    </div>
+    </>
+  )
+}
+
 export default function Products() {
+  const { category } = useParams();
   const [products, setProducts] = useState([]);
   const [output, setOutput] = useState([]);
   const [inputText, setInputText] = useState("");
   const [showFilter, setShowFilter] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
 
   function checkAvailable(db, item) {
     let pat = item.trim();
@@ -33,14 +111,24 @@ export default function Products() {
   }, [inputText]);
 
   useEffect(() => {
-    (async function getData() {
-      const response = await axios.get("/api/products");
-      setProducts(response.data.products);
-    })();
+    try {
+      (async function getData() {
+        setIsLoading(true);
+        const response = await axios.get(
+          "https://protected-bastion-58177.herokuapp.com/products"
+        );
+        console.log(response.data);
+        setProducts(response.data);
+        setIsLoading(false);
+      })();
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+    }
   }, []);
 
   const [
-    { showInventoryAll, showFastDeliveryOnly, sortBy, maxValue },
+    { showInventoryAll, showFeaturedOnly, sortBy, maxValue },
     dispatch,
   ] = useReducer(
     function reducer(state, action) {
@@ -54,7 +142,7 @@ export default function Products() {
         case "TOGGLE_DELIVERY":
           return (state = {
             ...state,
-            showFastDeliveryOnly: !state.showFastDeliveryOnly,
+            showFeaturedOnly: !state.showFeaturedOnly,
           });
         case "SORT":
           return {
@@ -72,150 +160,122 @@ export default function Products() {
     },
     {
       showInventoryAll: false,
-      showFastDeliveryOnly: false,
+      showFeaturedOnly: false,
       sortBy: null,
-      maxValue: 1000,
+      maxValue: 100000,
     }
   );
 
   function getSortedData(productList, sortBy) {
     if (sortBy && sortBy === "PRICE_HIGH_TO_LOW") {
-      return productList.slice(0).sort((a, b) => b["price"] - a["price"]);
+      return productList
+        .slice(0)
+        .sort((a, b) => b["new_price"] - a["new_price"]);
     }
 
     if (sortBy && sortBy === "PRICE_LOW_TO_HIGH") {
-      return productList.slice(0).sort((a, b) => a["price"] - b["price"]);
+      return productList
+        .slice(0)
+        .sort((a, b) => a["new_price"] - b["new_price"]);
     }
     return productList;
   }
 
   function getFilteredData(
     productList,
-    { showFastDeliveryOnly, showInventoryAll, maxValue }
+    { showFeaturedOnly, showInventoryAll, maxValue }
   ) {
     return productList
-      .filter(({ fastDelivery }) =>
-        showFastDeliveryOnly ? fastDelivery : true
-      )
-      .filter(({ inStock }) => (showInventoryAll ? true : inStock))
-      .filter((item) => parseInt(item.price) <= maxValue);
+      .filter(item=>category!=="all"?item.category===category:true)
+      .filter(({ featured }) => (showFeaturedOnly ? featured : true))
+      .filter(({ stock }) => (showInventoryAll ? true : stock))
+      .filter((item) => parseInt(item.new_price) <= maxValue);
   }
 
   const sortedData = getSortedData(products, sortBy);
   const filteredData = getFilteredData(sortedData, {
-    showFastDeliveryOnly,
+    showFeaturedOnly,
     showInventoryAll,
     maxValue,
   });
 
-  return (
-    <div className="container--body">
-      <div className="search--bar">
-        <input
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          placeholder="What are you looking for?"
-        />
-      </div>
-      <div className="sort--filter">
+
+  function SortFilter(){
+      return(
+        <>
+        <div className="sort--filter">
         <FcFilledFilter
-          onClick={()=>setShowFilter(prev=>!prev)}
+          onClick={() => setShowFilter((prev) => !prev)}
           size={32}
           className="filter--icon"
         />
-        </div>
-        <div style={{display:showFilter?"":"none"}}className="filter--Productsmodal">
-          <AiOutlineCloseCircle  onClick={() => setShowFilter((prev) => !prev)}
-          style={{ marginLeft: "auto" }}/>
-          <label htmlFor="sort">Sort By:</label>
-          <select
-            onChange={(e) =>
-              dispatch({ type: "SORT", payload: e.target.value })
-            }
-            name="sort"
-            id="sort"
-          >
-            <option value="">Newest First</option>
-            <option value="PRICE_HIGH_TO_LOW">Price high to low</option>
-            <option value="PRICE_LOW_TO_HIGH">Price low to high</option>
-          </select>
-          <label class="container">
-            Include Out of Stock
-            <input
-              type="checkbox"
-              checked={showInventoryAll}
-              onChange={() => dispatch({ type: "TOGGLE_INVENTORY" })}
-            />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            Fast Delivery Only
-            <input
-              type="checkbox"
-              checked={showFastDeliveryOnly}
-              onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
-            />
-            <span class="checkmark"></span>
-          </label>
-          <div class="slidecontainer">
-            <input
-              type="range"
-              min="50"
-              max="1000"
-              value={maxValue}
-              class="slider"
-              id="myRange"
-              onChange={(e) => {
-                dispatch({
-                  type: "TOGGLE_PRICE_RANGE",
-                  payload: e.target.value,
-                });
-              }}
-            />
-            <p>
-              Value: <span id="demo">₹{maxValue}</span>
-            </p>
-          </div>
-        </div>
-      <div className="products">
-        <div className="product-grid">
-          {inputText.length
-            ? output.map((item) => (
-                <Product
-                  id={item.id}
-                  name={item.name}
-                  image={item.image}
-                  price={item.price}
-                  inStock={item.inStock}
-                  fastDelivery={item.fastDelivery}
-                  rating={ratings[item.rating]}
-                />
-              ))
-            : filteredData.map((item) => (
-                <Product
-                  id={item.id}
-                  name={item.name}
-                  image={item.image}
-                  price={item.price}
-                  inStock={item.inStock}
-                  fastDelivery={item.fastDelivery}
-                  rating={ratings[item.rating]}
-                />
-              ))}
-          {!output.length && inputText && (
-            <h1
-              style={{
-                color: "#D97706",
-                fontSize: "2rem",
-                margin: "4rem 0",
-                opacity: "0.6"
-              }}
-            >
-              Sorry {inputText} is not available
-            </h1>
-          )}
+      </div>
+      <div
+        style={{ display: showFilter ? "" : "none" }}
+        className="filter--Productsmodal"
+      >
+        <AiOutlineCloseCircle
+          onClick={() => setShowFilter((prev) => !prev)}
+          style={{ marginLeft: "auto" }}
+        />
+        <label htmlFor="sort">Sort By:</label>
+        <select
+          onChange={(e) => dispatch({ type: "SORT", payload: e.target.value })}
+          name="sort"
+          id="sort"
+        >
+          <option value="">Newest First</option>
+          <option value="PRICE_HIGH_TO_LOW">Price high to low</option>
+          <option value="PRICE_LOW_TO_HIGH">Price low to high</option>
+        </select>
+        <label class="container">
+          Include Out of Stock
+          <input
+            type="checkbox"
+            checked={showInventoryAll}
+            onChange={() => dispatch({ type: "TOGGLE_INVENTORY" })}
+          />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">
+          Fast Delivery Only
+          <input
+            type="checkbox"
+            checked={showFeaturedOnly}
+            onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
+          />
+          <span class="checkmark"></span>
+        </label>
+        <div class="slidecontainer">
+          <input
+            type="range"
+            min="1000"
+            max="100000"
+            value={maxValue}
+            class="slider"
+            id="myRange"
+            onChange={(e) => {
+              dispatch({
+                type: "TOGGLE_PRICE_RANGE",
+                payload: e.target.value,
+              });
+            }}
+          />
+          <p>
+            Value: <span id="demo">₹{maxValue}</span>
+          </p>
         </div>
       </div>
+        </>
+      )
+  }
+
+
+  return (
+    <div className="container--body">
+      <SearchBar inputText={inputText} setInputText={setInputText} />
+      <SortFilter />
+      <ProductsGrid isLoading={isLoading} inputText={inputText} output={output} filteredData={filteredData} />
     </div>
   );
 }
